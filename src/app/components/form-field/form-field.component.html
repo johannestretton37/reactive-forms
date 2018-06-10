@@ -1,0 +1,25 @@
+<ng-container *ngIf="formGroup" [formGroup]="formGroup" [ngSwitch]="field.type">
+
+  <div *ngSwitchCase="'radios'">
+    <p>{{ field.label }}</p>
+    <label *ngFor="let radio of field.fields">
+      {{ radio.label }}
+      <input type="radio" [value]="radio.value" [formControlName]="formControlName">
+    </label>
+  </div>
+
+  <div *ngSwitchCase="'checkbox'">
+    <label>
+      {{ field.label }}
+      <input type="checkbox" [value]="field.value" [formControlName]="formControlName">
+    </label>
+  </div>
+
+  <div *ngSwitchDefault>
+    <label>
+      {{ field.label }}
+      <input [type]="field.type" [placeholder]="field.placeholder" [formControlName]="formControlName">
+    </label>
+  </div>
+
+</ng-container>
